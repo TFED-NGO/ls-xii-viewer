@@ -25,7 +25,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "public/404.html"
             ],
             "styles": [
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
