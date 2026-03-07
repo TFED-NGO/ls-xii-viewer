@@ -1,5 +1,5 @@
 {
-	"editionUrls": ["https://tfed-ngo.github.io/Alcuin-De-Ratione/edition.xml"],
+	"editionUrls": ["https://tfed-ngo.github.io/LS-XII/edition.xml"],
 	"editionImagesSource": {
 		"manifest": {
 			"value": "https://www.e-codices.unifr.ch/metadata/iiif/csg-0730/manifest.json",
@@ -11,7 +11,7 @@
 		}
 	},
 	"imagesFolderUrls": {
-		"single": "https://tfed-ngo.github.io/Alcuin-De-Ratione/data/images/single/"
+		"single": "https://tfed-ngo.github.io/LS-XII/data/images/single/"
 	},
 	"configurationUrls": {
 		"edition": "assets/config/edition_config.json",
