@@ -58,12 +58,38 @@ export function chainFirstChildTexts(elem: XMLElement, evtTextComplexElements: s
     '#text': 'nodeValue',
     'p': 'textContent',
   };
-  let result = '';
-  elem.childNodes.forEach((node) => (evtTextElements[node.nodeName] !== undefined) ? result += node[ evtTextElements[node.nodeName] ] : (
-    evtTextComplexElements.includes(node.nodeName) ? result += chainDeepTexts(node, evtInnerTextElements) : '' ))
+/** modified to include use of hi tags
+//    let result = '';
+//  elem.childNodes.forEach((node) => (evtTextElements[node.nodeName] !== undefined) ? result += node[ evtTextElements[node.nodeName] ] : (
+//    evtTextComplexElements.includes(node.nodeName) ? result += chainDeepTexts(node, evtInnerTextElements) : '' ))
+//
+//  return result;
+}*/
 
-  return result;
-}
+ let result = '';
+
+elem.childNodes.forEach((node) => {
+  if (node.nodeName === 'hi') {
+    const rend = node.getAttribute('rend');
+
+    if (rend === 'superscript') {
+      result += `<sup>${chainDeepTexts(node, evtInnerTextElements)}</sup>`;
+    } else {
+      result += chainDeepTexts(node, evtInnerTextElements);
+    }
+
+  } else if (evtTextElements[node.nodeName] !== undefined) {
+    result += node[evtTextElements[node.nodeName]];
+
+  } else if (evtTextComplexElements.includes(node.nodeName)) {
+    result += chainDeepTexts(node, evtInnerTextElements);
+  }
+});
+
+return result;
+
+
+  
 
 /**
  * Retrieve and chain textContent of all descendents
