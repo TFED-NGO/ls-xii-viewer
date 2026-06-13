@@ -89,10 +89,3 @@ evt-addition evt-note {
     float:right;
     margin-top: -1.5rem;
 }
-
-hi[rend="superscript"],
-.superscript {
-  vertical-align: super;
-  font-size: smaller;
-  line-height: 0;
-}
