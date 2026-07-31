@@ -1,6 +1,6 @@
 {
 	"editionUrls": [
-		"assets/editions/oswald/data/edition.xml"
+		"assets/data/oswald_edition.xml"
 	],
 	"editionImagesSource": {
 		"manifest": {
