@@ -1,0 +1,33 @@
+{
+  "defaultEdition": "oswald",
+  "editions": [
+    {
+      "slug": "oswald",
+      "label": "Oswald, Published",
+      "configBase": "assets/editions/oswald",
+      "defaultViewMode": "imageText",
+      "enabled": true
+    },
+    {
+      "slug": "Boulogne",
+      "label": "Boulogne Sermon, Published",
+      "configBase": "assets/editions/Boulogne",
+      "defaultViewMode": "imageText",
+      "enabled": true
+    },
+    {
+      "slug": "Aelfric",
+      "label": "Aelfric's Lives of Saints I, Published",
+      "configBase": "assets/editions/Aelfric",
+      "defaultViewMode": "imageText",
+      "enabled": true
+    },
+    {
+      "slug": "alcuin",
+      "label": "Alcuin de Ratione, Published",
+      "configBase": "assets/editions/alcuin",
+      "defaultViewMode": "imageText",
+      "enabled": true
+    }
+  ]
+}
