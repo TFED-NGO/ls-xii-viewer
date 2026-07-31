@@ -1,4 +1,7 @@
 {
+  "label": "Oswald",
+  "defaultViewMode": "readingText",
   "enabled": true,
+  "isDefault": true,
   "sortOrder": 10
 }
