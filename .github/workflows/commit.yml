@@ -48,4 +48,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: deploy_dist/alcuin-viewer
+          FOLDER: deploy_dist/evt-viewer-angular
