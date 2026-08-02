@@ -16,8 +16,8 @@
     "double": ""
 },
 	"configurationUrls": {
-		"edition": "assets/editions/boulogne/edition_config.json",
-		"ui": "assets/editions/boulogne/ui_config.json",
-		"editorialConventions": "assets/editions/boulogne/editorial_conventions_config.json"
+		"edition": "assets/editions/Boulogne/edition_config.json",
+		"ui": "assets/editions/Boulogne/ui_config.json",
+		"editorialConventions": "assets/editions/Boulogne/editorial_conventions_config.json"
 	}
 }
