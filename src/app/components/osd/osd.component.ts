@@ -182,7 +182,7 @@ export class OsdComponent implements AfterViewInit, OnDestroy {
       aspectRatio: 0.66,
       immediateRender: true,
       preload: true,
-      placeholderFillStyle: 'assets/images/empty-image.png',
+      placeholderFillStyle: 'assets/images/empty-image.jpg',
     };
 
     this.subscriptions.push(combineLatest([this.optionsChange, this.tileSources, this.evtModelService.pages$])
