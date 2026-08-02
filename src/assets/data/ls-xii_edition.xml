@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader xml:lang="en"> <!-- bibliographic, technical, cataloguing information, etc. NOT the main text, but essential for a valid TEI document -->
+      <fileDesc> <!-- a general heading -->
+
+         <titleStmt>
+            <title>The Boulogne Sermon: A Digital Edition</title>
+						<title>The Aelfric Scriptorium Project</title> <!-- this is the title of the digital document, not the original text -->
+
+            <principal>Dr. Theodore H. Leinbaugh</principal>
+						<principal>Hunter Corb</principal>
+						<sponsor>Transatlantic Forum for Education and Diplomacy</sponsor>
+						<funder>Transatlantic Forum for Education and Diplomacy</funder>
+						<funder>Joan Gillings</funder>
+
+            <respStmt> <!-- the responsibility statement allows specification of jobs and those who did them -->
+               <resp>Project Director</resp>
+               <name>Dr. Theodore H. Leinbaugh</name>
+            </respStmt>
+            <respStmt>
+							 <resp>Project Manager</resp>
+							 <name>Hunter Corb</name><!-- Other instructors go here -->
+            </respStmt>
+            <respStmt>
+				<resp>Encoding in TEI-conformant markup:</resp>
+				<name>Nancy Setzler</name>
+				<name>Sarah Bulger</name>
+                <name>Eve Svoboda</name>
+                <name>Jackson Meade</name>
+                <name>Jacqueline Bodycomb</name>
+            </respStmt>
+            <respStmt>
+               <resp>Manuscription description:</resp>
+               		<name>Dr. Theodore H. Leinbaugh</name>
+							 		<name>Hunter Corb</name>
+            </respStmt>
+            <respStmt>
+							 <resp>Manuscript transcription:</resp>
+							 		<name>Dr. Theodore H. Leinbaugh</name>
+							 		<name>Matt Diem</name>
+							 		<name>Hunter Corb</name>
+            </respStmt>
+            <respStmt>
+							 	<resp>General overview and critical apparatus:</resp>
+		 							<name>Dr. Theodore H. Leinbaugh</name>
+            </respStmt>
+            <respStmt>
+								<resp>Old English Glossary compiled by:</resp>
+									<name>Theodore H. Leinbaugh</name>
+									<name>Hunter Corb</name>
+									<name>Jacob Beerli</name>
+									<name>Robert Laffoon</name>
+            </respStmt>
+            <respStmt>
+                <resp>CI/CD, Publication, and Software Development:</resp>
+                <name>Jackson Meade</name>
+            </respStmt>
+         </titleStmt>
+
+				 <editionStmt>
+					 <edition>Previous Editions</edition>
+					 	<!-- include all previous editions of Boulogne here -->
+					</editionStmt>
+					<extent>?? [megabytes]</extent>
+
+         <publicationStmt> <!-- this tells you who is publishing the digital version -->
+					 <authority>The Aelfric Scriptorium Project (TASP)</authority>
+            <publisher>Transatlantic Forum for Education and Diplomacy</publisher>
+						<date>2022</date>
+						<availability status="restricted">
+							<licence target="http://creativecommons.org/licenses/by-sa/3.0/">Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license</licence>
+							<p>Contact The Aelfric Project team members for more information.</p>
+						</availability>
+         </publicationStmt>
+         <sourceDesc> <!-- this tells you about the origial that is being encoded here -->
+
+            <msDesc> <!-- this is vital for MSS markup; it contains the information usually found in catalogue entries and edition front matter -->
+
+
+               <msIdentifier> <!-- This is  the information required to identify the manuscript being described -->
+                  <settlement></settlement>
+                  <repository></repository>
+                  <idno></idno>
+               </msIdentifier>
+
+
+               <head> <!-- basic statement about the MSS goes here --> </head>
+
+               <msContents>
+                  <summary><!-- what is in the MS in terms of texts and sections -->
+
+                  </summary>
+                  <textLang mainLang="la">
+      							Predominantly in Latin.
+      						</textLang>
+               </msContents>
+
+               <physDesc> <!-- elements of the physical description of the MS -->
+                  <objectDesc>
+                     <supportDesc>
+                        <support><!-- description of support (Note this may contain many elements) -->
+                           <p></p>
+
+                        </support>
+                        <extent>
+                           <!-- description of size -->
+                        </extent>
+                        <condition>
+                           <p><!-- description of damage, etc -->
+                           </p>
+                        </condition>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout><!-- how text is laid out on the page, including information about any ruling, pricking -->
+
+                        </layout>
+                     </layoutDesc>
+                  </objectDesc>
+
+                  <handDesc>
+                     <ab> <!--a description of the writing in the manuscript --></ab>
+                  </handDesc>
+
+                  <decoDesc>
+                     <p>
+                        <!-- description of the decoration in the MS -->
+                     </p>
+                  </decoDesc>
+
+               </physDesc>
+
+
+
+               <history> <!-- this tells you the origin and provenance of the MS -->
+                  <summary></summary>
+                  <origin>
+                  </origin>
+                  <provenance>
+                  </provenance>
+               </history>
+
+               <additional>
+                  <listBibl>
+                    <bibl></bibl>
+                 </listBibl>
+
+               </additional>
+
+            </msDesc>
+
+
+
+         </sourceDesc>
+      </fileDesc>
+
+    <encodingDesc> <!-- This contains information about the editorial and encoding practices -->
+        <projectDesc> <p><!-- goals of the project --></p>  </projectDesc>
+       <editorialDecl>
+				 <p>In an effort to preserve all spelling variants in a world without standardized spelling, we have rendered all words
+				 as they appear in the MS.</p>
+				 <!-- include all other editorial declarations and decisions here -->
+			 </editorialDecl>
+  <charDecl>
+    <char xml:id="N_macron">
+        <localProp name="name"
+            value="N CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">N̄</mapping>
+        <mapping type="diplomatic">N̄</mapping>
+    </char>
+    <char xml:id="m_macron">
+        <localProp name="name"
+            value="M CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">m̄</mapping>
+        <mapping type="diplomatic">m̄</mapping>
+    </char>
+    <char xml:id="r_macron">
+        <localProp name="name"
+            value="R CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">r̄</mapping>
+        <mapping type="diplomatic">r̄</mapping>
+    </char>
+    <char xml:id="h_macron">
+        <localProp name="name"
+            value="H CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">h̄</mapping>
+        <mapping type="diplomatic">h̄</mapping>
+    </char>
+    <char xml:id="p_macron">
+        <localProp name="name"
+            value="P CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">p̄</mapping>
+        <mapping type="diplomatic">p̄</mapping>
+    </char>
+    <char xml:id="d_macron">
+        <localProp name="name"
+            value="D CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">d̄</mapping>
+        <mapping type="diplomatic">d̄</mapping>
+    </char>
+    <char xml:id="g_macron">
+        <localProp name="name"
+            value="G CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">ḡ</mapping>
+        <mapping type="diplomatic">ḡ</mapping>
+    </char>
+    <char xml:id="c_macron">
+        <localProp name="name"
+            value="C CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">c̄</mapping>
+        <mapping type="diplomatic">c̄</mapping>
+    </char>
+    <char xml:id="s_macron">
+        <localProp name="name"
+            value="S CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">s̄</mapping>
+        <mapping type="diplomatic">s̄</mapping>
+    </char>
+    <char xml:id="t_macron">
+        <localProp name="name"
+            value="T CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">t̄</mapping>
+        <mapping type="diplomatic">t̄</mapping>
+    </char>
+    <char xml:id="l_macron">
+        <localProp name="name"
+            value="L CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">l̄</mapping>
+        <mapping type="diplomatic">l̄</mapping>
+    </char>
+    <char xml:id="n_macron">
+        <localProp name="name"
+            value="N CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">n̄</mapping>
+        <mapping type="diplomatic">n̄</mapping>
+    </char>
+    <char xml:id="b_macron">
+        <localProp name="name"
+            value="B CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">b̄</mapping>
+        <mapping type="diplomatic">b̄</mapping>
+    </char>
+    <char xml:id="q_macron">
+        <localProp name="name"
+            value="Q CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">q̄</mapping>
+        <mapping type="diplomatic">q̄</mapping>
+    </char>
+    <char xml:id="u_macron">
+        <localProp name="name"
+            value="U CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">ū</mapping>
+        <mapping type="diplomatic">ū</mapping>
+    </char>
+    <char xml:id="a_macron">
+        <localProp name="name"
+            value="A CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">ā</mapping>
+        <mapping type="diplomatic">ā</mapping>
+    </char>
+    <char xml:id="i_macron">
+        <localProp name="name"
+            value="I CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">ī</mapping>
+        <mapping type="diplomatic">ī</mapping>
+    </char>
+    <char xml:id="o_macron">
+        <localProp name="name"
+            value="O CHARACTER WITH A MACRON OVER IT"/>
+        <mapping type="normalized">ō</mapping>
+        <mapping type="diplomatic">ō</mapping>
+    </char>
+  </charDecl>
+    </encodingDesc>
+		<revisionDesc>
+			<list>
+				<item>
+					<date when="2024-01-31"></date>
+				</item>
+			</list>
+		</revisionDesc>
+</teiHeader>
+
+<text>
+   <body>
+     <pb n="63v" facs="134-63v" />
+      <div type="sermon">
+        <head style="text-align:center; font-variant: smallcaps">
+        IN CAPUT IEIUNII  ·
+        <choice>
+            <expan> Þis spel gebyrað seofon niht ær lenctene · </expan>
+        </choice>
+        </head>
+      <ab>
+        <lb n="1" />
+         ON ĐYSSE WUCAN ON WODNES-DÆG SWA SWA GE SYLFE WITON ·
+        <lb n="2" />
+        is caput ieiunii · 
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice>
+          is on englisc · heafod lenctenes fæste
+        <lb n="3" />
+        nes · We etað on þam sunnan 
+        <choice>
+            <orig>dagü</orig>
+            <expan>dagum</expan>
+        </choice>
+         on undern 
+        <choice>
+        <orig>⁊</orig>
+            <expan>and</expan>
+        </choice>
+        on æfen ·
+    <pb n="64r" facs="135-64r" />
+        <lb n="4" />
+         forðan þe se sunnan dæg is swa halig 
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+         se man bið wyrðe 
+        <lb n="5" />
+        ðe on þam dæge fæstan wile· 
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        he beo amansumod gif he
+        <lb n="6" />
+         hit for his anwlysnysse deð · Ne eac man ne mót · cneo
+        <lb n="7" />
+         wian on sunnan dagum · We sculon swa þeah ægðer ge on
+        <lb n="8" />
+         sunnon dagum ge on oðrum dagum druncennysse 
+         <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+         </choice>
+          ofer
+        <lb n="9" />
+        fylle forbugan · þe ðam þe us bec tæcað · 
+        <choice>
+            <orig>⁊huru</orig>
+            <expan>and huru</expan>
+        </choice> 
+        swyðost 
+        <lb n="10" />
+        on lencten · Nu þe beoð þa feowertig daga on 
+        <choice>
+            <orig>urü</orig>
+            <expan>urum</expan>
+        </choice>
+        lencten
+        <lb n="11" />
+        <choice>
+            <orig>licü </orig>
+            <expan>licum</expan>
+        </choice>
+        fæstene gefyllede · buton we fæsten þær foran to þas 
+        <lb n="12" />
+        feower dagas · wodnes dæg · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice> 
+        þunrescdæg · 
+        <choice>
+            <orig>⁊</orig>
+         <expan>and</expan>
+         </choice>
+        frige dæg · 
+        <choice>
+            <orig>⁊ </orig>
+            <expan>and </expan>
+        </choice>
+        sæt dæg · 
+        <lb n="13" />
+         ernes dæg · swa swa hit gefyrn geset wæs þeah ðe we hit
+        <lb n="14" />
+        eow nu secgan · On þone wodnes dæg wide geond eorðan · 
+        <lb n="15" />
+        cerdas bletsiað swa swa hit geset is · clæne axan on cyrcan ·
+        <lb n="16" />
+        <choice>
+         <orig>⁊</orig> 
+            <expan>and</expan>
+            </choice>
+          þa siððan lecgað uppa manna heafda ·  
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        hi habban
+        <lb n="17" />
+        on gemynde 
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice>  
+        hi of eorðan comon · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice>      
+         eft to duste gewen
+        <lb n="18" />
+        dad · swa swa se ælmihtiga god to adame cwæð · siððan he
+        <lb n="19" />
+        agylt hæfde ongean godes bebod · On 
+        <choice>
+            <orig>geswincü</orig>
+            <expan>geswincum</expan>
+        </choice>  
+        þu leofast
+        <lb n="20" />
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice>   
+        on swate þu etst þinne hláf on eorðan · oð  
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        þu eft gewen
+        <lb n="21" />
+        de to þære ylcan eorðan þe þu of come · forðan þe þu
+        <lb n="22" />
+        eart dust · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice>
+        to duste gewendst · Nis þis na gesæd be man
+        <lb n="23" />
+        sawlum · ac be manna lichaman þe for-molsniað to
+        <lb n="24" />
+        duste · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice> 
+        eft sceolan on domes dæg ðurh ures drihtnes
+        <lb n="25" />
+        mihte ealle of eorðan arísan þe æfre cuce wæron ·  
+        <lb n="26" />
+        swa swa ealle treowa cuciað æfre on lenctenes timan ·
+        <lb n="27" />
+        þe ær þurh wyntræs cyle wurdon adydde · We rædað on
+        <lb n="28" />
+        bocum ægðer ge on ðære ealdan á · ge on þære níwan ·
+        <lb n="29" />
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        þa menn þe heora synna be-hreowsodon ·  
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        hí mid ax
+        <lb n="30" />
+        um hi sylfe bestreowodon · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice> 
+        mid hæran hi gescryddon
+        <lb n="31" />
+         to lice · nu do we þis lytle on ures lenctenes anginne ·
+        <lb n="32" />
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+         we streowiað axan uppan ure heafda to geswutelun
+        <lb n="33" />
+        ge  
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        we sculon ure synna behreowsian · on ure lenc
+        <lb n="34" />
+        ten licum fæstene · Sum unge rad mann wæs mid
+        <lb n="35" />
+        ælfstane bisceope on wiltun-scire on hirede · se man
+    <pb n="64v" facs="136-64v" />
+        <lb n="36" />
+        nolde gan to þám axum on þone wodnes dæg swa swa oðre
+         <lb n="37" /> 
+        men dydon þe þa mæssan ge sohton · Þa bædon his ge
+        <lb n="38" />
+        feran
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice>  
+        he eode to þam mæsse preoste · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and </expan>
+        </choice> 
+        under fæn
+        <lb n="39" />
+        ge þa gerynu þe hi under fengon · He cwæð icnelle ·
+        <lb n="40" />
+        Hi bædon þa-git · he cwæð  
+        <choice>
+            <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice> 
+        he nolde · 
+        <choice>
+            <orig>⁊</orig>
+            <expan>and</expan>
+        </choice> 
+        wealode midwordü ·
+        <lb n="41" /> 
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan>
+    </choice> 
+    sæde 
+    <choice>
+        <orig>ꝥ</orig>
+            <expan>þæt</expan>
+        </choice>  
+    he wolde his wifes brucan on þam 
+    <choice>
+    <orig>unalyfedü</orig>
+    <expan>unalyfedum</expan>
+    </choice>
+    <lb n="42" /> 
+    timan · Hi leton þa swa · 
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan>
+    </choice>
+     hit gelamp  
+     <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>
+    se gedwola rad
+    <lb n="43" />
+    on ðære wucan ymbe sum ærende · þa gestodon hine
+    <lb n="44" />
+    hundas hetelice swyðe · 
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan>
+    </choice>
+     he hine werode oþ  ƀ (þæt) his sceaft
+    <lb n="45" />
+    ætstod ætforan him · 
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan>
+    </choice> 
+    <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>
+    hors hine bær forð · swa  
+  <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>  
+    <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>
+    <lb n="46" />
+    spere him eode þurh ut · 
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan>
+    </choice>
+     he feoll cwelende · He wearð
+    <lb n="47" />
+    ða bebyrged · 
+    <choice>
+        <orig>⁊him</orig>
+        <expan>and him</expan>
+    </choice>
+     læg on uppan fela byrðena eorðan
+    <lb n="48" />
+    binnon seofon nihton · þæs ðe hé forsóc þa feawa axan ·
+    <lb n="49" />
+    On þære ylcan wucan com sum truð to þæs bisceopes hi
+    <lb n="50" />
+    rede · se ne gymde nanes lenctenes fæstenes · ac eode him
+    <lb n="51" />
+    to kicenan · þa hwíle ðe se bisceop mæssode 
+    <choice>
+        <orig>⁊began</orig>
+        <expan>and began</expan>
+    </choice>
+    to
+    <lb n="52" />
+    etenne · þe feoll þa æt ðære forman snæde under-becc
+    <lb n="53" />
+    geswogen · 
+    <choice>
+        <orig>⁊spaw</orig>
+        <expan>and spaw</expan>
+    </choice>
+     blod · ac him gebyrede swa ðeah  
+     <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>
+    feorh
+    <lb n="54" />
+    earfoðlice · Us sæde eac oft Æþelwold se halga bisceop
+    <lb n="55" />
+    þe nu wyrcð wundra þurh god ·  
+     <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice> 
+    he cuðe anne mann mid
+    <lb n="56" />
+    ælfege bisceope · se wolde drincan on lenctene · 
+    <choice>
+       <orig>þoⁿne</orig>
+        <expan>þonne</expan>
+    </choice>
+    <lb n="57" />
+     hine lyste · þa sume dæg bæd he þone bisceop ælfeh ·
+    <lb n="58" />
+    blætsian his ful · he nolde · 
+    <choice>
+        <orig>⁊se</orig>
+        <expan>and se</expan>
+    </choice>
+    dysiga dranc butan
+    <lb n="59" />
+    bletsunge 
+    <choice>
+        <orig>⁊eode</orig>
+        <expan>and eode</expan>
+    </choice>
+     him út · Man slætte þa ænne fearr
+    <lb n="60" />
+    feringa þær-ute · 
+    <choice>
+        <orig>⁊se </orig>
+        <expan>and se</expan>
+    </choice>
+    fear arn him togeanes · 
+    <choice>    
+        <orig>⁊hine</orig>
+        <expan>and hine</expan>
+    </choice>
+    <lb n="61" />
+     ðyde  
+     <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice> 
+     he his feorh forlét ·
+    <choice>
+        <orig>⁊</orig>
+        <expan>and</expan> 
+    </choice>
+    swa ðone unti
+    <lb n="62" />
+    man 
+    <choice>
+        <orig>dreⁿc</orig>
+        <expan>drenc</expan>
+    </choice>
+    Ælc þæra manna þe yt oððe drincð on
+    <lb n="63" />
+    untiman on þam halgan lenctene · oððe on rihtfæsten
+    <lb n="64" />
+    dagum · wite hé to soðan  
+    <choice>
+        <orig>ꝥ</orig>
+        <expan>þæt</expan>
+    </choice>
+    his sawl sceal sarlice hit ge
+    <lb n="65" />
+    bicgan · ðeah þe se lichama her lybbe gesund · We sceo
+    <lb n="66" />
+     lan gewilnian symle þæs ecean lifes · forþan þe on þam
+    <lb n="67" />
+     life syndon gode dagas · na swa þeah manega dagas ac
+<pb n="65r" facs="137-65r" /> 
+    <lb n="68" />
+    an · se ne geendað næfre · þeah þe hwa wille hér on lífe
+    <lb n="69" />
+   habban góde dagas · he ne mæg hi hér findan þeah þe 
+<lb n="70" />
+hé sy welig forðan þe he bið oþþe untrü  · oððe hohfull ·
+<lb n="71" />
+oþþe his frynd him æt-feallað · oððe his feoh him æt-byrst ·
+<lb n="72" />
+oððe sum oðer ungelimp on þysum life him becymð · 
+<choice>
+    <orig>⁊þær</orig>
+    <expan>and þær</expan>
+</choice>
+<lb n="73" />
+to ecean he him ondræt his deaðes symble · Ne bið nan
+<lb n="74" />
+þyssera yfela on þam ecan life · ac bið se án góda dæg
+<lb n="75" />
+mid gode sylfum · butan sorge 
+<choice>
+    <orig>⁊sare</orig>
+    <expan>and sare</expan>
+</choice>
+ · 
+<choice>
+    <orig>⁊ealra</orig>
+    <expan>and ealra</expan>
+</choice>
+ geswenced
+<lb n="76" />
+nyssa · 
+<choice>
+    <orig>⁊un</orig>
+    <expan>and un</expan>
+</choice>
+ geendod blis betwux eallum halgum · Wel mæg
+<lb n="77" />
+ge hwá witan  
+<choice>
+    <orig>ꝥ</orig>
+    <expan>þæt</expan>
+</choice>
+ gif ahwær is myrcð ⁊wuldor (and wuldor) · 
+<choice>
+    <orig>ꝥ</orig>
+    <expan>þæt</expan>
+</choice>
+ þær is un
+<lb n="78" />
+asecgendlic wuldor þær se wunað þe ealle ðincg gesceop ·
+<lb n="79" />
+ <choice>
+    <orig>⁊god</orig>
+    <expan>and god</expan>
+</choice>
+sylf hæfð gehaten eallum þam ðe hine lufiað · 
+<choice>
+    <orig>ꝥ</orig>
+    <expan>þæt</expan>
+</choice>
+ hi
+ <lb n="80" />
+ moten wunian on ðam ylcean wuldre mid him sylfum
+<pb n="66v" facs="139-66r" />
+    <lb n="1" />
+       <pb n="67r" facs="140-66v" />
+    <lb n="1" />
+       <pb n="67v" facs="141-67r" />
+    <lb n="1" />
+     </ab>
+    </div>
+	</body>
+</text>
+</TEI>
+

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "alcuin-viewer": {
+    "evt-viewer-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,8 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/LS-XII",
-            "outputPath": "dist/alcuin-viewer",
+            "outputPath": "dist/evt-viewer-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,7 +25,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/public/404.html"
+              {
+                "glob": "{404.html,gh-pages-route-redirect.js}",
+                "input": "src/public",
+                "output": "/"
+              }
             ],
             "styles": [
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
@@ -125,7 +128,35 @@
                 }
               ]
             },
-            "development": {}
+            "development": {},
+            "gh-pages": {
+              "baseHref": "/evt-viewer-angular-fork/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "7mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb"
+                }
+              ]
+            }
           },
           "defaultConfiguration": "production"
         },
@@ -134,13 +165,16 @@
           "options": {},
           "configurations": {
             "production": {
-              "browserTarget": "alcuin-viewer:build:production"
+              "browserTarget": "evt-viewer-angular:build:production"
             },
             "release": {
-              "browserTarget": "alcuin-viewer:build:release"
+              "browserTarget": "evt-viewer-angular:build:release"
+            },
+            "gh-pages": {
+              "browserTarget": "evt-viewer-angular:build:gh-pages"
             },
             "development": {
-              "browserTarget": "alcuin-viewer:build:development"
+              "browserTarget": "evt-viewer-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -148,7 +182,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "alcuin-viewer:build"
+            "browserTarget": "evt-viewer-angular:build"
           }
         },
         "test": {
@@ -181,10 +215,10 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "alcuin-viewer:serve:production"
+              "devServerTarget": "evt-viewer-angular:serve:production"
             },
             "development": {
-              "devServerTarget": "alcuin-viewer:serve:development"
+              "devServerTarget": "evt-viewer-angular:serve:development"
             }
           },
           "defaultConfiguration": "development"
@@ -201,7 +235,7 @@
       }
     }
   },
-  "defaultProject": "alcuin-viewer",
+  "defaultProject": "evt-viewer-angular",
   "cli": {
     "analytics": "c373e515-eb44-4b1b-85c7-56dd668954af",
     "defaultCollection": "@angular-eslint/schematics"

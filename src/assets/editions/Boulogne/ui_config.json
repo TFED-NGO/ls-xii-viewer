@@ -5,7 +5,7 @@
 			"iconSet": "evt",
 			"id": "readingText",
 			"label": "Reading Text",
-			"enable": false
+			"enable": true
 		},
 		{
 			"icon": "imgTxt",

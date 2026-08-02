@@ -354,9 +354,16 @@ export class EVTModelService {
     );
 
   public readonly msDesc$ = this.editionSource$.pipe(
-    map((source) => this.msDescParser.parseMsDesc(source)),
-    shareReplay(1),
-  );
+  map((source) => {
+    try {
+      return this.msDescParser.parseMsDesc(source);
+    } catch (e) {
+      console.error('msDesc parsing failed', e);
+      return undefined;
+    }
+  }),
+  shareReplay(1),
+);
 
   public readonly bibliographicEntries$ = this.editionSource$.pipe(
     map((source) => this.bibliographicEntriesParser.parseBibliographicEntries(source)),
