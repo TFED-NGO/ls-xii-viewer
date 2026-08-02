@@ -40,7 +40,7 @@
 			"iconSet": "evt",
 			"id": "collation",
 			"label": "Collation",
-			"enable": true
+			"enable": false
 		},
 		{
 			"icon": "srcTxt",

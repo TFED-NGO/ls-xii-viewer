@@ -9,16 +9,16 @@
       "enabled": true
     },
     {
-      "slug": "boulogne",
-      "label": "Boulogne, Published",
-      "configBase": "assets/editions/boulogne",
+      "slug": "Boulogne",
+      "label": "Boulogne Sermon, Published",
+      "configBase": "assets/editions/Boulogne",
       "defaultViewMode": "imageText",
       "enabled": true
     },
     {
-      "slug": "aelfric",
+      "slug": "Aelfric",
       "label": "Aelfric's Lives of Saints I, Published",
-      "configBase": "assets/editions/aelfric",
+      "configBase": "assets/editions/Aelfric",
       "defaultViewMode": "imageText",
       "enabled": true
     },
@@ -26,13 +26,6 @@
       "slug": "alcuin",
       "label": "Alcuin de Ratione, Published",
       "configBase": "assets/editions/alcuin",
-      "defaultViewMode": "imageText",
-      "enabled": true
-    },
-    {
-      "slug": "LS-XII",
-      "label": "Lives of Saints 12, In Progress",
-      "configBase": "assets/editions/LS-XII",
       "defaultViewMode": "imageText",
       "enabled": true
     }
