@@ -11,14 +11,14 @@
     {
       "slug": "boulogne",
       "label": "Boulogne, Published",
-      "configBase": "assets/editions/boulogne",
+      "configBase": "assets/editions/Boulogne",
       "defaultViewMode": "imageText",
       "enabled": true
     },
     {
       "slug": "aelfric",
       "label": "Aelfric's Lives of Saints I, Published",
-      "configBase": "assets/editions/aelfric",
+      "configBase": "assets/editions/Aelfric",
       "defaultViewMode": "imageText",
       "enabled": true
     },
