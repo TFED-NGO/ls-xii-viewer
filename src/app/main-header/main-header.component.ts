@@ -25,10 +25,8 @@ export class MainHeaderComponent {
     map(([configTitle, editionTitle]) => configTitle ?? editionTitle ?? 'defaultTitle'),
   );
 
-get editions(): SiteEditionEntry[] {
-  return this.editionContext.enabledEditions;
-}  
   public viewModes: ViewMode[] = [];
+  public editions: SiteEditionEntry[] = [];
   public activeEditionSlug: string | null = null;
   public currentViewMode$ = this.evtStatusService.currentViewMode$;
   public mainMenuOpened = false;
@@ -46,6 +44,7 @@ get editions(): SiteEditionEntry[] {
     private editionContext: EditionContextService,
     private router: Router,
   ) {
+    this.editions = this.editionContext.enabledEditions;
     this.editionContext.editionChange$.subscribe(() => this.refreshFromConfig());
     this.editionContext.activeEdition$.subscribe((entry) => {
       this.activeEditionSlug = entry?.slug ?? null;
@@ -67,21 +66,11 @@ get editions(): SiteEditionEntry[] {
     }
   }
 
- selectEdition(entry: SiteEditionEntry) {
-  this.router.navigate(
-    [entry.slug],
-    {
-      queryParams: {
-        d: null,
-        p: null,
-        el: null,
-        ws: null,
-        vs: null,
-        lr: null
-      }
-    }
-  );
-}
+  selectEdition(entry: SiteEditionEntry) {
+    const viewMode = this.evtStatusService.updateViewMode$.getValue()?.id ?? entry.defaultViewMode ?? 'readingText';
+    this.router.navigate([entry.slug, viewMode]);
+  }
+
   trackEditions(_index: number, item: SiteEditionEntry) {
     return item.slug;
   }
