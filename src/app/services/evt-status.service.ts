@@ -190,15 +190,26 @@ export class EVTStatusService {
         });
 
         this.editionContext.editionChange$.subscribe(() => {
-            if (this.isOnHomeRoute()) {
-                return;
-            }
-            const { viewModeId } = this.parseEditionRoute(this.router.url);
-            const vmFromUrl = viewModeId
-                ? this.availableViewModes.find((v) => v.id === viewModeId)
-                : undefined;
-            this.updateViewMode$.next(vmFromUrl ?? this.defaultViewMode);
-        });
+    if (this.isOnHomeRoute()) {
+        return;
+    }
+
+    // Reset state belonging to the previously selected edition.
+    this.updateDocument$.next('');
+    this.updatePageId$.next('');
+    this.updateWitnesses$.next([]);
+    this.updateVersions$.next([]);
+    this.updateChangeLayer$.next(undefined);
+    this.updateLayer$.next(undefined);
+
+    const { viewModeId } = this.parseEditionRoute(this.router.url);
+
+    const vmFromUrl = viewModeId
+        ? this.availableViewModes.find((v) => v.id === viewModeId)
+        : undefined;
+
+    this.updateViewMode$.next(vmFromUrl ?? this.defaultViewMode);
+});
 
         this.currentNamedEntityId$.pipe(
             filter((id) => !!id),
