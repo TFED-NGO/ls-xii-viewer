@@ -173,6 +173,7 @@ export class EVTStatusService {
         private editionContext: EditionContextService,
     ) {
         
+
         this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
         return;
