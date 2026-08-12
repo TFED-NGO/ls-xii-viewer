@@ -172,23 +172,7 @@ export class EVTStatusService {
         private route: ActivatedRoute,
         private editionContext: EditionContextService,
     ) {
-        this.currentStatus$.subscribe((currentStatus) => {
-            if (this.isOnHomeRoute()) {
-                return;
-            }
-            const slug = this.editionContext.activeSlug;
-            if (!slug || !currentStatus.viewMode) {
-                return;
-            }
-            const { view, params } = this.getUrlFromStatus(currentStatus);
-            const commands = [slug, view];
-            if (Object.keys(params).length > 0) {
-                this.router.navigate(commands, { queryParams: params });
-            } else {
-                this.router.navigate(commands);
-            }
-        });
-
+        
         this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
         return;
