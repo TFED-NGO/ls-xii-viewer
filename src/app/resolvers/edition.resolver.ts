@@ -20,8 +20,24 @@ export class EditionResolver implements Resolve<SiteEditionEntry> {
     const entry = this.editionContext.getEditionEntry(slug);
     const fileConfigUrl = this.editionContext.getFileConfigUrl(entry.configBase);
 
+    console.log('[EVT] RESOLVER START');
+    console.log('[EVT] slug:', slug);
+    console.log('[EVT] configBase:', entry.configBase);
+    console.log('[EVT] fileConfigUrl:', fileConfigUrl);
+
     return from(this.appConfig.loadEditionBundle(fileConfigUrl)).pipe(
-      tap(() => this.editionContext.setActiveEdition(entry)),
+      tap(() => {
+        console.log('[EVT] BUNDLE LOADED');
+        console.log('[EVT] AppConfig editionUrls:',
+          AppConfig.evtSettings?.files?.editionUrls);
+        console.log('[EVT] AppConfig editionTitle:',
+          AppConfig.evtSettings?.edition?.editionTitle);
+
+        this.editionContext.setActiveEdition(entry);
+
+        console.log('[EVT] ACTIVE EDITION:',
+          this.editionContext.activeSlug);
+      }),
       map(() => entry),
     );
   }
