@@ -172,23 +172,46 @@ export class EVTStatusService {
         private route: ActivatedRoute,
         private editionContext: EditionContextService,
     ) {
-        
+        this.currentStatus$.subscribe((currentStatus) => {
+            if (this.isOnHomeRoute()) {
+                return;
+            }
+            const slug = this.editionContext.activeSlug;
+            if (!slug || !currentStatus.viewMode) {
+                return;
+            }
+            const { view, params } = this.getUrlFromStatus(currentStatus);
+            const commands = [slug, view];
+            if (Object.keys(params).length > 0) {
+                this.router.navigate(commands, { queryParams: params });
+            } else {
+                this.router.navigate(commands);
+            }
+        });
 
-        this.editionContext.editionChange$.subscribe(() => {
+ this.editionContext.editionChange$.subscribe(() => {
+    if (this.isOnHomeRoute()) {
+        return;
+    }
+    const { viewModeId } = this.parseEditionRoute(this.router.url);
+    const vmFromUrl = viewModeId
+        ? this.availableViewModes.find((v) => v.id === viewModeId)
+        : undefined;
+    this.updateViewMode$.next(vmFromUrl ?? this.defaultViewMode);
+});
+
+to:
+
+this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
         return;
     }
 
-    // Reset state belonging to the previously selected edition.
+    // clear previous edition state
     this.updateDocument$.next('');
     this.updatePageId$.next('');
-    this.updateWitnesses$.next([]);
-    this.updateVersions$.next([]);
-    this.updateChangeLayer$.next(undefined);
-    this.updateLayer$.next(undefined);
 
     const { viewModeId } = this.parseEditionRoute(this.router.url);
-
     const vmFromUrl = viewModeId
         ? this.availableViewModes.find((v) => v.id === viewModeId)
         : undefined;
