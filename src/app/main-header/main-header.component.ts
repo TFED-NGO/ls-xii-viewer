@@ -67,11 +67,9 @@ get editions(): SiteEditionEntry[] {
     }
   }
 
-  selectEdition(entry: SiteEditionEntry) {
-  const viewMode = entry.defaultViewMode ?? 'imageText';
-
+ selectEdition(entry: SiteEditionEntry) {
   this.router.navigate(
-    [entry.slug, viewMode],
+    [entry.slug],
     {
       queryParams: {
         d: null,
