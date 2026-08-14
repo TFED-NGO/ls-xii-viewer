@@ -14,7 +14,14 @@ export class EditionDefaultRedirectComponent implements OnInit {
 
   ngOnInit(): void {
     const edition = this.route.parent?.snapshot.data?.edition as SiteEditionEntry | undefined;
-    const view = edition?.defaultViewMode ?? 'ImageText';
-    this.router.navigate([view], { relativeTo: this.route.parent, replaceUrl: true });
+    const view = edition?.defaultViewMode ?? 'imageText';
+    const editionSlug = this.route.parent?.snapshot.paramMap.get('editionSlug');
+
+    if (editionSlug) {
+      this.router.navigate(
+        ['/', editionSlug, view],
+        { replaceUrl: true }
+      );
+    }
   }
 }
