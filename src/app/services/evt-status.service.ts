@@ -189,19 +189,6 @@ export class EVTStatusService {
             }
         });
 
- this.editionContext.editionChange$.subscribe(() => {
-    if (this.isOnHomeRoute()) {
-        return;
-    }
-    const { viewModeId } = this.parseEditionRoute(this.router.url);
-    const vmFromUrl = viewModeId
-        ? this.availableViewModes.find((v) => v.id === viewModeId)
-        : undefined;
-    this.updateViewMode$.next(vmFromUrl ?? this.defaultViewMode);
-});
-
-to:
-
 this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
         return;
