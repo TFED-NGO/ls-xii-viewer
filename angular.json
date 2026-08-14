@@ -130,7 +130,7 @@
             },
             "development": {},
             "gh-pages": {
-              "baseHref": "/evt-viewer-angular-fork/",
+              "baseHref": "/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
