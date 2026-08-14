@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Single Page App</title>
-    <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Single Page App</title>
+  <script>
+    (function () {
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').split('?')[0] +
-        (l.search ? '&' + l.search.slice(1) : '') +
-        l.hash
-      );
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
+
+      // GitHub Pages has already converted this URL into the
+      // SPA redirect format. Do not redirect it again.
+      if (l.search.indexOf('?/') === 0) {
+        return;
+      }
+
+      var path = l.pathname;
+
+      // Preserve the edition slug.
+      var parts = path.split('/').filter(Boolean);
+
+      if (parts.length === 0) {
+        l.replace('/');
+        return;
+      }
+
+      var edition = parts[0];
+      var route = parts.slice(1).join('/');
+
+      // Send the request to the Angular entry point using
+      // the GitHub Pages SPA redirect format.
+      var redirect =
+        '/?/' +
+        edition +
+        (route ? '/' + route : '') +
+        (l.search ? '&' + l.search.substring(1) : '') +
+        l.hash;
+
+      l.replace(redirect);
+    })();
+  </script>
+</head>
+<body>
+</body>
+</html>l>
