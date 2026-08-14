@@ -26,7 +26,7 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob": "{404.html,gh-pages-route-redirect.js}",
+                "glob": "404.html",
                 "input": "src/public",
                 "output": "/"
               }
