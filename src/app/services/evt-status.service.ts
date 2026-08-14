@@ -132,17 +132,20 @@ export class EVTStatusService {
             changeLayerData,
         ]) => {
             if (viewMode.id === 'textText') {
-                if (editionLevels.length === 1) {
-                    const other = this.availableEditionLevels.filter((e) => e.id !== editionLevels[0])[0];
-                    if (other) {
-                        editionLevels.push(other.id);
-                    }
-                }
-            } else if (viewMode.id === 'collation') {
-                editionLevels = [];
-            } else if (editionLevels.length > 1) {
-                editionLevels = editionLevels.slice(0, 1);
-            }
+    if (editionLevels.length === 1) {
+        const other = this.availableEditionLevels.find(
+            (e) => e.id !== editionLevels[0]
+        );
+
+        if (other) {
+            editionLevels = [...editionLevels, other.id];
+        }
+    }
+} else if (viewMode.id === 'collation') {
+    editionLevels = [];
+} else if (editionLevels.length > 1) {
+    editionLevels = [editionLevels[0]];
+}
 
             return {
                 viewMode,
@@ -173,21 +176,28 @@ export class EVTStatusService {
         private editionContext: EditionContextService,
     ) {
         this.currentStatus$.subscribe((currentStatus) => {
-            if (this.isOnHomeRoute()) {
-                return;
-            }
-            const slug = this.editionContext.activeSlug;
-            if (!slug || !currentStatus.viewMode) {
-                return;
-            }
-            const { view, params } = this.getUrlFromStatus(currentStatus);
-            const commands = [slug, view];
-            if (Object.keys(params).length > 0) {
-                this.router.navigate(commands, { queryParams: params });
-            } else {
-                this.router.navigate(commands);
-            }
-        });
+    if (this.isOnHomeRoute()) {
+        return;
+    }
+
+    const slug = this.editionContext.activeSlug;
+
+    if (!slug || !currentStatus.viewMode) {
+        return;
+    }
+
+    const { view, params } = this.getUrlFromStatus(currentStatus);
+    const targetUrl = this.router.createUrlTree(
+        [slug, view],
+        { queryParams: params }
+    ).toString();
+
+    const currentUrl = this.router.url;
+
+    if (targetUrl !== currentUrl) {
+        this.router.navigateByUrl(targetUrl);
+    }
+});
 
 this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
