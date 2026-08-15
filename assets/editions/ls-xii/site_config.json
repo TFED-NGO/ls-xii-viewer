@@ -5,20 +5,20 @@
       "slug": "oswald",
       "label": "Oswald",
       "configBase": "assets/editions/oswald",
-      "defaultViewMode": "readingText",
-      "enabled": true
-    },
-    {
-      "slug": "Boulogne",
-      "label": "Boulogne Sermon, Published",
-      "configBase": "assets/editions/Boulogne",
       "defaultViewMode": "imageText",
       "enabled": true
     },
     {
-      "slug": "Aelfric",
+      "slug": "boulogne",
+      "label": "Boulogne Sermon, Published",
+      "configBase": "assets/editions/boulogne",
+      "defaultViewMode": "imageText",
+      "enabled": true
+    },
+    {
+      "slug": "aelfric",
       "label": "Aelfric's Lives of Saints I, Published",
-      "configBase": "assets/editions/Aelfric",
+      "configBase": "assets/editions/aelfric",
       "defaultViewMode": "imageText",
       "enabled": true
     },
