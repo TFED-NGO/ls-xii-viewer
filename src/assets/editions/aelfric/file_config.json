@@ -1,0 +1,21 @@
+{
+	"editionUrls": ["https://tfed-ngo.github.io/aelfric/edition.xml"],
+	"editionImagesSource": {
+		"manifest": {
+			"value": "https://www.e-codices.unifr.ch/metadata/iiif/csg-0730/manifest.json",
+			"enable": false
+		},
+		"graphics": {
+			"value": "url",
+			"enable": true
+		}
+	},
+	"imagesFolderUrls": {
+		"single": "https://tfed-ngo.github.io/aelfric/data/images/single/"
+	},
+	"configurationUrls": {
+		"edition": "assets/editions/aelfric/edition_config.json",
+		"ui": "assets/editions/aelfric/ui_config.json",
+		"editorialConventions": "assets/editions/aelfric/editorial_conventions_config.json"
+	}
+}
