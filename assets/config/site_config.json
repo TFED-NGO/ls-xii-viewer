@@ -5,7 +5,7 @@
       "slug": "oswald",
       "label": "Oswald",
       "configBase": "assets/editions/oswald",
-      "defaultViewMode": "readingText",
+      "defaultViewMode": "imageText",
       "enabled": true
     },
     {
