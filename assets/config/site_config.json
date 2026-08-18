@@ -23,13 +23,6 @@
       "enabled": true
     },
     {
-      "slug": "alcuin",
-      "label": "Alcuin de Ratione, Published",
-      "configBase": "assets/editions/alcuin",
-      "defaultViewMode": "imageText",
-      "enabled": true
-    },
-    {
       "slug": "ls-xii",
       "label": "Lives of Saints 12, In Progress",
       "configBase": "assets/editions/ls-xii",
