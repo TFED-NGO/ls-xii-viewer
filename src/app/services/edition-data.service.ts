@@ -23,21 +23,31 @@ export class EditionDataService {
   }
 
   private loadAndParseEditionData(): Observable<OriginalEncodingNodeType> {
-    const editionUrls = AppConfig.evtSettings?.files?.editionUrls || [];
+  const editionUrls = AppConfig.evtSettings?.files?.editionUrls || [];
 
-    if (editionUrls.length === 0) {
-      return this.handleLoadingError();
-    }
-
-    return concat(
-      ...editionUrls.map((url) => this.fetchEditionFromUrl(url).pipe(
-        catchError(() => EMPTY),
-      )),
-    ).pipe(
-      first(),
-      catchError(() => this.handleLoadingError()),
-    );
+  if (editionUrls.length === 0) {
+    return this.handleLoadingError();
   }
+
+  console.log('EDITION URLS:', editionUrls);
+
+  return concat(
+    ...editionUrls.map((url) => {
+      console.log('LOADING EDITION XML:', url);
+
+      return this.fetchEditionFromUrl(url).pipe(
+        tap((data) => {
+  console.log('EDITION XML LOADED:', url);
+  console.log('XML TITLE CHECK:', data.querySelector('title')?.textContent);
+}),
+        catchError(() => EMPTY),
+      );
+    }),
+  ).pipe(
+    first(),
+    catchError(() => this.handleLoadingError()),
+  );
+}
 
   private fetchEditionFromUrl(editionUrl: string): Observable<OriginalEncodingNodeType> {
     return this.http.get(editionUrl, { responseType: 'text' }).pipe(

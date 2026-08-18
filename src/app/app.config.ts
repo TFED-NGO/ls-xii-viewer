@@ -28,9 +28,17 @@ export class AppConfig {
         return firstValueFrom(
             this.http.get<SiteConfig>(this.siteConfigUrl).pipe(
                 switchMap((siteConfig) => {
-                    this.editionContext.setSiteConfig(siteConfig);
-                    const entry = this.editionContext.getEditionEntry(siteConfig.defaultEdition)
-                        ?? this.editionContext.enabledEditions[0];
+    this.editionContext.setSiteConfig(siteConfig);
+
+    const path = window.location.pathname;
+    const requestedSlug = path.split('/').filter(Boolean)[0];
+
+    const entry =
+        (requestedSlug
+            ? this.editionContext.getEditionEntry(requestedSlug)
+            : undefined)
+        ?? this.editionContext.getEditionEntry(siteConfig.defaultEdition)
+        ?? this.editionContext.enabledEditions[0];
                     if (!entry) {
                         return of(undefined);
                     }

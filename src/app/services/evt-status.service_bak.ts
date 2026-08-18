@@ -67,27 +67,15 @@ export class EVTStatusService {
         merge(
             this.route.queryParams.pipe(map((params: URLParams) => params.p)),
             this.updatePageId$,
-).pipe(
-    mergeMap((id) => this.evtModelService.pages$.pipe(
-        map((pages) => {
-            const selectedPage: Page = !id
-                ? pages[0]
-                : pages.find((p) => p.id === id) || pages[0];
-
-            console.log('CURRENT PAGE:', {
-                requestedId: id,
-                firstPage: pages[0]?.id,
-                selectedPage: selectedPage?.id,
-                pageCount: pages.length,
-            });
-
-            return selectedPage;
-        }),
-    )),
-),
-this.updatePage$.pipe(
-    filter((p) => !!p),
-),        this.updatePageNumber$.pipe(
+        ).pipe(
+            mergeMap((id) => this.evtModelService.pages$.pipe(
+                map((pages) => !id ? pages[0] : pages.find((p) => p.id === id) || pages[0])),
+            ),
+        ),
+        this.updatePage$.pipe(
+            filter((p) => !!p),
+        ),
+        this.updatePageNumber$.pipe(
             withLatestFrom(this.evtModelService.pages$),
             map(([n, pages]) => n < 0 ? pages[pages.length - 1] : pages[n]),
         ),
@@ -144,20 +132,17 @@ this.updatePage$.pipe(
             changeLayerData,
         ]) => {
             if (viewMode.id === 'textText') {
-    if (editionLevels.length === 1) {
-        const other = this.availableEditionLevels.find(
-            (e) => e.id !== editionLevels[0]
-        );
-
-        if (other) {
-            editionLevels = [...editionLevels, other.id];
-        }
-    }
-} else if (viewMode.id === 'collation') {
-    editionLevels = [];
-} else if (editionLevels.length > 1) {
-    editionLevels = [editionLevels[0]];
-}
+                if (editionLevels.length === 1) {
+                    const other = this.availableEditionLevels.filter((e) => e.id !== editionLevels[0])[0];
+                    if (other) {
+                        editionLevels.push(other.id);
+                    }
+                }
+            } else if (viewMode.id === 'collation') {
+                editionLevels = [];
+            } else if (editionLevels.length > 1) {
+                editionLevels = editionLevels.slice(0, 1);
+            }
 
             return {
                 viewMode,
@@ -187,83 +172,31 @@ this.updatePage$.pipe(
         private route: ActivatedRoute,
         private editionContext: EditionContextService,
     ) {
-        this.currentStatus$.subscribe((currentStatus) => {
+        
+
+        this.editionContext.editionChange$.subscribe(() => {
     if (this.isOnHomeRoute()) {
         return;
     }
 
-    const activeSlug = this.editionContext.activeSlug;
-    const urlPath = this.router.url.split('?')[0];
-    const routeSlug = urlPath.split('/')[1];
-
-    if (!activeSlug || !routeSlug || !currentStatus.viewMode) {
-        return;
-    }
-
-    // Do not let the old edition rebuild the URL while the router
-    // is switching to the newly selected edition.
-    if (routeSlug !== activeSlug) {
-        console.log('STATUS URL REBUILD SKIPPED — EDITION SWITCHING:', {
-            routeSlug,
-            activeSlug,
-            currentUrl: this.router.url,
-        });
-        return;
-    }
-
-    const slug = activeSlug;
-
-    const { view, params } = this.getUrlFromStatus(currentStatus);
-
-    console.log('STATUS URL REBUILD:', {
-        activeSlug: slug,
-        currentViewMode: currentStatus.viewMode?.id,
-        currentUrl: this.router.url,
-    });
-
-    const targetUrl = this.router.createUrlTree(
-        [slug, view],
-        { queryParams: params }
-    ).toString();
-
-    const currentUrl = this.router.url;
-
-    if (!currentUrl.startsWith(`/${slug}/`)) {
-        return;
-    }
-
-    if (targetUrl !== currentUrl) {
-    this.router.navigateByUrl(targetUrl);
-}
-});
-
-this.editionContext.editionChange$.subscribe((slug) => {
-    console.log('EDITION CHANGE:', slug);
-
-    // Clear state belonging to the previous edition.
+    // Reset state belonging to the previously selected edition.
     this.updateDocument$.next('');
     this.updatePageId$.next('');
+    this.updateWitnesses$.next([]);
+    this.updateVersions$.next([]);
+    this.updateChangeLayer$.next(undefined);
+    this.updateLayer$.next(undefined);
 
-    // Force the newly selected edition's default view.
-    const viewMode = this.defaultViewMode;    
+    const { viewModeId } = this.parseEditionRoute(this.router.url);
 
-    console.log(
-    'VIEW MODES AT EDITION CHANGE:',
-    JSON.stringify({
-        activeEdition: this.editionContext.activeEdition,
-        availableViewModes: this.availableViewModes,
-        configuredDefault: this.editionContext.activeEdition?.defaultViewMode,
-        globalDefault: AppConfig.evtSettings?.edition?.defaultViewMode,
-    }, null, 2)
-);
+    const vmFromUrl = viewModeId
+        ? this.availableViewModes.find((v) => v.id === viewModeId)
+        : undefined;
 
+    this.updateViewMode$.next(vmFromUrl ?? this.defaultViewMode);
+});
 
-    if (viewMode) {
-        this.updateViewMode$.next(viewMode);
-        console.log('EDITION CHANGE VIEW MODE FIRED:', viewMode?.id);
-    }
-});        
-this.currentNamedEntityId$.pipe(
+        this.currentNamedEntityId$.pipe(
             filter((id) => !!id),
             switchMap((id) => timer(5000).pipe(map(() => id))),
         ).subscribe(() => this.currentNamedEntityId$.next(undefined));
@@ -274,7 +207,19 @@ this.currentNamedEntityId$.pipe(
         return path === '' || path === '/';
     }
 
-    
+    private parseEditionRoute(url: string): { editionSlug?: string; viewModeId?: string } {
+        const path = url.replace(/\?.*$/, '').replace(/#.*/, '');
+        const segments = path.split('/').filter((s) => s.length > 0);
+        if (segments.length >= 2) {
+            return { editionSlug: segments[0], viewModeId: segments[1] };
+        }
+        if (segments.length === 1) {
+            return { editionSlug: segments[0] };
+        }
+
+        return {};
+    }
+
     getUrlFromStatus(status: AppStatus) {
         const params = {
             d: status.document || '',

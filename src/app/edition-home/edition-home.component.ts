@@ -15,9 +15,9 @@ export class EditionHomeComponent {
   }
 
  editionLink(entry: SiteEditionEntry): string[] {
-  return ['/', entry.slug];
+  const view = entry.defaultViewMode ?? 'readingText';
+  return [entry.slug, view];
 }
-
   trackEditions(_index: number, item: SiteEditionEntry) {
     return item.slug;
   }

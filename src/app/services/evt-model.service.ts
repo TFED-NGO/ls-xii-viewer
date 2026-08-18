@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { combineLatestWith, map, shareReplay, switchMap } from 'rxjs/operators';
+import { combineLatestWith, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import {
   ChangeLayerData,
   Facsimile,
@@ -33,8 +33,15 @@ import { ModParserService } from './xml-parsers/mod-parser.service';
   providedIn: 'root',
 })
 export class EVTModelService {
-  public readonly editionSource$: Observable<OriginalEncodingNodeType> = this.editionDataService.parsedEditionSource$
+  public readonly editionSource$: Observable<OriginalEncodingNodeType> =
+    this.editionDataService.parsedEditionSource$
     .pipe(
+      tap((source) => {
+        console.log(
+          'EVT MODEL RECEIVED NEW EDITION SOURCE:',
+          source.querySelector('title')?.textContent
+        );
+      }),
       shareReplay(1),
     );
 
@@ -53,9 +60,16 @@ export class EVTModelService {
   );
 
   public readonly pages$: Observable<Page[]> = this.editionSource$.pipe(
-    map((source) => this.editionStructureParser.parsePages(source).pages),
-    shareReplay(1),
-  );
+  map((source) => this.editionStructureParser.parsePages(source).pages),
+  tap((pages) => {
+    console.log('ALL PAGES:', pages.map(p => ({
+      label: p.label,
+      facs: p.facs,
+      facsUrl: p.facsUrl,
+    })));
+  }),
+  shareReplay(1),
+);
 
   // NAMED ENTITIES
   public readonly parsedLists$ = this.editionSource$.pipe(

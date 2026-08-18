@@ -67,9 +67,13 @@ export class MainHeaderComponent {
   }
 
   selectEdition(entry: SiteEditionEntry) {
-    const viewMode = this.evtStatusService.updateViewMode$.getValue()?.id ?? entry.defaultViewMode ?? 'readingText';
-    this.router.navigate([entry.slug, viewMode]);
-  }
+  const viewMode = entry.defaultViewMode ?? 'imageText';
+
+  console.log('DROPDOWN SELECTED EDITION:', entry);
+  console.log('NAVIGATING TO:', entry.slug, viewMode);
+
+  this.router.navigate([entry.slug, viewMode]);
+}
 
   trackEditions(_index: number, item: SiteEditionEntry) {
     return item.slug;

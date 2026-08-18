@@ -79,8 +79,8 @@ export class TextPanelComponent {
     ),
     this.updatePage$,
   ).pipe(
-    distinctUntilChanged((x, y) => x?.id === y?.id),
-  );
+  distinctUntilChanged((x, y) => x === y),
+);
   public currentPageId$ = this.currentPage$.pipe(
     map((p) => p?.id),
   );

@@ -62,7 +62,9 @@ export class EditionContextService {
   }
 
   setActiveEdition(entry: SiteEditionEntry): void {
+    console.log('SETTING ACTIVE EDITION:', entry.slug);
+
     this.activeEditionSubject.next(entry);
     this.editionChangeSubject.next(entry.slug);
-  }
+}
 }

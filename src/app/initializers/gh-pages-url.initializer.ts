@@ -1,14 +1,20 @@
-import { Router } from '@angular/router';
-import { parseGhPagesRedirectUrl } from '../utils/gh-pages-url';
+﻿import { parseGhPagesRedirectUrl } from '../utils/gh-pages-url';
 
 /**
- * Fallback if index.html redirect script did not run (e.g. cached bundle order).
+ * GitHub Pages fallback.
+ *
+ * The 404.html script puts the requested Angular route into
+ * the query string. Do not navigate here because AppConfig must
+ * load site_config.json before the edition guard runs.
  */
-export function normalizeGhPagesUrl(router: Router): () => void {
+export function normalizeGhPagesUrl(): () => void {
   return () => {
     const target = parseGhPagesRedirectUrl();
+
     if (target) {
-      router.navigateByUrl(target, { replaceUrl: true });
+      console.log('GH PAGES TARGET:', target);
+      window.history.replaceState({}, '', target);
+      console.log('NORMALIZED URL:', window.location.pathname);
     }
   };
 }
